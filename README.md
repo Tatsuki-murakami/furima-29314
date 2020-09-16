@@ -29,14 +29,14 @@ Things you may want to cover:
 
 | Column               | Type     | Options     |
 | -------------------- | -------- | ----------- |
-| family name          | string   | null: false |
+| family_name          | string   | null: false |
 | name                 | string   | null: false |
-| family name furigana | string   | null: false |
-| name furigana        | string   | null: false |
+| family_name_furigana | string   | null: false |
+| name_furigana        | string   | null: false |
 | email                | string   | null: false |
 | password             | string   | null: false |
 | nickname             | string   | null: false |
-| birthday             | datetime | null: false |
+| birthday             | date     | null: false |
 
 ### Association
 
@@ -49,8 +49,8 @@ Things you may want to cover:
 | Column       | Type    | Options                        |
 | ------------ | ------- | ------------------------------ |
 | name         | string  | null: false                    |
-| price_id     | integer | null: false                    |
-| user_id      | string  | null: false, foreign_key: true |
+| price        | integer | null: false                    |
+| user_id      | integer | null: false, foreign_key: true |
 | category_id  | integer | null: false                    |
 | describe     | text    | null: false                    |
 | condition_id | integer | null: false                    |
@@ -61,8 +61,8 @@ Things you may want to cover:
 ### Association
 
 - has_many   :comments
-- belongs_to :users
-- has_one    :buys
+- belongs_to :user
+- has_one    :buy
 
 ## comments テーブル
 
@@ -75,30 +75,35 @@ Things you may want to cover:
 
 ### Association
 
-- belongs_to :items
-- belongs_to :users
+- belongs_to :item
+- belongs_to :user
 
 ## buys テーブル
 
 | Column  | Type       | Options                        |
 | ------- | ---------- | ------------------------------ |
-| user-id | references | null: false, foreign_key: true |
+| user_id | integer    | null: false, foreign_key: true |
 | buy     | boolean    | null: false                    |
 
 ### Association
 
-- has_one    :users
-- belongs_to :items
+- has_one    :user
+- belongs_to :item
 - has_one    :address
 
 ## address テーブル
 
-| Column  | Type       | Options                        |
-| ------- | ---------- | ------------------------------ |
-| buy_id  | references | null: false, foreign_key: true |
-| address | string     | null: false                    |
-| user_id | references | null: false, foreign_key: true |
+| Column         | Type       | Options                        |
+| -------------- | ---------- | ------------------------------ |
+| buy_id         | integer    | null: false, foreign_key: true |
+| user_id        | integer    | null: false, foreign_key: true |
+| postal_code    | integer    | null: false                    |
+| prefectures_id | integer    | null: false  foreign_key: true |
+| city           | string     | null: false                    |
+| address        | string     | null: false                    |
+| building_name  | string     |                                |
+| phone_number   | integer    | null: false                    |
 
 ### Association
 
-- has_one    :buysi
+- has_one    :buy
