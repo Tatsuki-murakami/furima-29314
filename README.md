@@ -41,7 +41,7 @@ Things you may want to cover:
 ### Association
 
 - has_many :items
-- has_many :buys
+- has_one  :buy
 - has_many :comments
 
 ## items テーブル
@@ -83,11 +83,11 @@ Things you may want to cover:
 | Column  | Type       | Options                        |
 | ------- | ---------- | ------------------------------ |
 | user_id | integer    | null: false, foreign_key: true |
-| buy     | boolean    | null: false                    |
+| item_id | integer    | null: false, foreign_key: true |
 
 ### Association
 
-- has_one    :user
+- belongs_to :user
 - belongs_to :item
 - has_one    :address
 
@@ -95,14 +95,13 @@ Things you may want to cover:
 
 | Column         | Type       | Options                        |
 | -------------- | ---------- | ------------------------------ |
-| buy_id         | integer    | null: false, foreign_key: true |
 | user_id        | integer    | null: false, foreign_key: true |
-| postal_code    | integer    | null: false                    |
-| prefectures_id | integer    | null: false  foreign_key: true |
+| postal_code    | string     | null: false                    |
+| prefectures_id | integer    | null: false                    |
 | city           | string     | null: false                    |
 | address        | string     | null: false                    |
 | building_name  | string     |                                |
-| phone_number   | integer    | null: false                    |
+| phone_number   | string     | null: false                    |
 
 ### Association
 
