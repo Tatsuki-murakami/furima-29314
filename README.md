@@ -34,7 +34,7 @@ Things you may want to cover:
 | family_name_furigana | string   | null: false |
 | name_furigana        | string   | null: false |
 | email                | string   | null: false |
-| password             | string   | null: false |
+| encrypted_password   | string   | null: false |
 | nickname             | string   | null: false |
 | birthday             | date     | null: false |
 
