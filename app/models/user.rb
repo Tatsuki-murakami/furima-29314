@@ -26,4 +26,9 @@ class User < ApplicationRecord
   validates :email, uniqueness: true
   validates :encrypted_password, length: { minimum: 6 }
   validates :encrypted_password,    format: { with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i}
+
+  with_options presence: true, format: { with: / \ A [ァ-ヶー－] + \ z /, message: '全角カタカナを使用してください' } do
+    validates :family_name_hurigana
+    validates :name_hurigana
+ end
 end
