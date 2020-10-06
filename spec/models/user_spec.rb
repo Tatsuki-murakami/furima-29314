@@ -31,28 +31,71 @@ RSpec.describe User, type: :model do
     end
 
     it "emailに＠がないと登録できないこと" do
+      @user.email = "abcdefghijk"
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Email can't be @ in the email")
     end
 
     it "passwordが空では登録できないこと" do
-      @user.password = nil
+      @user.encrypted_password = nil
       @user.valid?
       expect(@user.errors.full_messages).to include("Password can't be blank")
     end
 
     it "passwordが5文字以下であれば登録できないこと" do
-      @user.password = "00000"
-      @user.password_confirmation = "00000"
+      @user.encrypted_password = "abc00"
+      @user.encrypted_password_confirmation = "abc00"
       @user.valid?
       expect(@user.errors.full_messages).to include("Password is too short (minimum is 6 characters)")
     end
 
-    it "passwordが半角英数字混合であること" do
+    it "passwordが半角英のみだと登録できない" do
+      @user.encrypted_password = "abcdef"
+      @user.encrypted_password_confirmation = "absdef"
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Password can't be only english")
     end
 
+    it "passwordが半角数字のみであると登録できない"
+      @user.encrypted_password = "000000"
+      @user.encrypted_password_confirmation = "000000"
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Password can't be only numbers")
+    end
     it "passwordが存在してもpassword_confirmationが空では登録できないこと" do
-      @user.password_confirmation = ""
+      @user.encrypted_password_confirmation = ""
       @user.valid?
       expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+    end
+
+    it "family_nameが空では登録できないこと" do
+      @user.family_name = nil
+      @user.valid?
+      expect(@user.errors.full_messages).to include("family_name can't be blank")
+    end
+
+    it "nameが空では登録できないこと" do
+      @user.name = nil
+      @user.valid?
+      expect(@user.errors.full_messages).to include("name can't be blank")
+    end
+
+    it "family_name_furiganaが空では登録できないこと" do
+      @user.family_name_furigana = nil
+      @user.valid?
+      expect(@user.errors.full_messages).to include("family_name_furigana can't be blank")
+    end
+
+    it "name_furiganaが空では登録できないこと" do
+      @user.name_furigana = nil
+      @user.valid?
+      expect(@user.errors.full_messages).to include("name_furigana can't be blank")
+    end
+
+    it "birthdayが空では登録できないこと" do
+      @user.birthday = nil
+      @user.valid?
+      expect(@user.errors.full_messages).to include("birthday can't be blank")
     end
   end
 end

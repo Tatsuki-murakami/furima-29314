@@ -8,6 +8,6 @@ FactoryBot.define do
     family_name                     {Faker::Japanese::Name.last_name}
     name                            {Faker::Japanese::Name.first_name}
     family_name_furigana            {Faker::Japanese::Name.last_name}
-    name_hurigana                   {Faker::Japanese::Name.first_name}
+    name_furigana                   {Faker::Japanese::Name.first_name}
   end
 end
