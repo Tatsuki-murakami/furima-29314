@@ -97,5 +97,29 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages).to include("birthday can't be blank")
     end
+
+    it"family_name_furiganaは全角カタカナでないと登録できない" do
+      @user.family_name_furigana = "ひらがな"
+      @user.valid?
+      expect(@user.errors.full_messages).to include("family_name_furigana can't be hiragana")
+    end
+
+    it"name_furiganaは全角カタカナでないと登録できない" do
+      @user.name_furigana = "ひらがな"
+      @user.valid?
+      expect(@user.errors.full_messages).to include("name_furigana can't be hiragana")
+    end
+
+    it "family_nameが全角入力でなければ登録できないこと" do
+      @user.family_name = "ｱｲｳｴｵ"
+      user.valid?
+      expect(@user.errors.full_messages).to include("name_furigana can't be hankaku")
+    end
+
+    it "nameが全角入力でなければ登録できないこと" do
+      @user.name = "ｱｲｳｴｵ"
+      user.valid?
+      expect(@user.errors.full_messages).to include("name can't be hankaku")
+    end
   end
 end
