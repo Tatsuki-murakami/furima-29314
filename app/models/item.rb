@@ -13,12 +13,13 @@ class Item < ApplicationRecord
     validates :image
     validates :name
     validates :describe
-    validates :category_id,  numericality: {other_than: 1, message: 'は空欄は受け付けません'}
-    validates :condition_id, numericality: {other_than: 1, message: 'は空欄は受け付けません'}
-    validates :day_id,       numericality: {other_than: 1, message: 'は空欄は受け付けません'}
-    validates :area_id,      numericality: {other_than: 1, message: 'は空欄は受け付けません'}
-    validates :shipping_id,  numericality: {other_than: 1, message: 'は空欄は受け付けません'}
     validates :price,        numericality: {only_integer: true, greater_than: 299, less_than: 10_000_000}
   end
 
+  with_options numericality: {other_than: 1, message: 'は空欄は受け付けません'} do
+    validates :category_id
+    validates :condition_id
+    validates :day_id
+    validates :area_id
+    validates :shipping_id
 end
