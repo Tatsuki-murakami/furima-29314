@@ -36,32 +36,32 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Describe can't be blank")
       end
       it 'カテゴリーの情報が必須であること' do
-        @item.category_id = nil
+        @item.category_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include('Category は空欄は受け付けません')
       end
       it '商品の状態についての情報が必須であること' do
-        @item.condition_id = nil
+        @item.condition_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include('Condition は空欄は受け付けません')
       end
       it '配送料の負担についての情報が必須であること' do
-        @item.shipping_id = nil
+        @item.shipping_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include('Shipping time は空欄は受け付けません')
       end
       it '発送元の地域についての情報が必須であること' do
-        @item.area_id = nil
+        @item.area_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include('Area は空欄は受け付けません')
       end
       it '発送までの日数についての情報が必須であること' do
-        @item.day_id = nil
+        @item.day_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include('Day は空欄は受け付けません')
       end
       it '価格についての情報が必須であること' do
-        @item.price = nil
+        @item.price = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Price can't be blank")
       end
