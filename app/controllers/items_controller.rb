@@ -34,13 +34,14 @@ class ItemsController < ApplicationController
        render :new 
      end
   end
-  
+
   def destroy
     if @item.destroy
       redirect_to items_path
     else
       render :edit
     end
+    item.destroy if user_signed_in? && current_user.id == item.user.id
   end
   
 private
