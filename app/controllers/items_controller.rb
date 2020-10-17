@@ -36,12 +36,11 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    if @item.destroy
+    if user_signed_in? && current_user.id == item.user.id && @item.destroy
       redirect_to items_path
     else
-      render :edit
+      render :show
     end
-    item.destroy if user_signed_in? && current_user.id == item.user.id
   end
   
 private
