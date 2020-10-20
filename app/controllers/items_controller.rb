@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
   before_action :not_login_user, only: [:new, :create, :destroy, :edit]
   before_action :set_Item, only: [ :edit, :update, :show, :destroy]
   before_action :move_to_index, except: [:index, :show]
-
+  before_action :ensure_current_user, only: [:edit, :destroy]
   def index
     @items=Item.all.order("created_at DESC")
   end
@@ -61,6 +61,10 @@ private
     unless user_signed_in?
       redirect_to action: :index
     end
+  end
+
+  def ensure_current_user
+    redirect_to root_path if current_user.id != @item.user.id
   end
 
 end
