@@ -78,7 +78,7 @@ Things you may want to cover:
 - belongs_to :item
 - belongs_to :user
 
-## buys テーブル
+## orders テーブル
 
 | Column  | Type       | Options                        |
 | ------- | ---------- | ------------------------------ |
@@ -89,9 +89,9 @@ Things you may want to cover:
 
 - belongs_to :user
 - belongs_to :item
-- has_one    :order
+- has_one    :address
 
-## order テーブル
+## address テーブル
 
 | Column         | Type       | Options                        |
 | -------------- | ---------- | ------------------------------ |
