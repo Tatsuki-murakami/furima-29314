@@ -26,7 +26,7 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.permit(:token, :item_id, :postal_code, :prefecture_id, :city, :house_number, :building, :phone_number,:order_id).merge(user_id: current_user.id)
+    params.permit(:token, :item_id, :postal_code, :prefecture_id, :city, :address, :building_name, :phone_number,:order_id).merge(user_id: current_user.id)
   end
 
   def pay_item
@@ -37,7 +37,7 @@ class OrdersController < ApplicationController
       currency:'jpy'
     )
   end
-
+    
   def not_login_user
     redirect_to items_path unless user_signed_in?
   end
