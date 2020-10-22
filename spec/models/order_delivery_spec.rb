@@ -10,7 +10,7 @@ RSpec.describe OrderDelivery, type: :model do
         expect(@order_delivery).to be_valid
       end
       it '建物名が空の時でも登録できること' do
-        @order_delivery.building = nil
+        @order_delivery.building_name = nil
         expect(@order_delivery).to be_valid
       end
 

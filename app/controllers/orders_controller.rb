@@ -2,15 +2,12 @@ class OrdersController < ApplicationController
   before_action :authenticate_user!, only: [:index]
   before_action :move_to_index, only: [:index]
   before_action :not_login_user, only: [:index, :new, :create]
-  before_action :set_item, only: [:index, :new]
   before_action :find_item, only: [:index, :create]
 
   def index
-
+    @order = OrderDelivery.new()
   end
 
-  def new
-  end
 
   def create
     @order = OrderDelivery.new(order_params)
@@ -47,10 +44,6 @@ class OrdersController < ApplicationController
     if current_user.id == item.user_id
       redirect_to root_path
     end
-  end
-
-  def set_item
-    @order = OrderDelivery.new()
   end
 
   def find_item
