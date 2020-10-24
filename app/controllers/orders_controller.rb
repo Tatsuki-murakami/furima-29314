@@ -1,8 +1,8 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!, only: [:index]
+  before_action :find_item, only: [:index, :create]
   before_action :move_to_index
   before_action :not_login_user, only: [:index, :new, :create]
-  before_action :find_item, only: [:index, :create]
 
   def index
     @order = OrderDelivery.new()
